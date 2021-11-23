@@ -1,4 +1,4 @@
-const calculatorScreen = document.querySelector('calculator-screen')
+const calculatorScreen = document.querySelector('.calculator-screen')
 
 const updateScreen = (number) => {
     calculatorScreen.value = number
@@ -12,6 +12,10 @@ numbers.forEach((number) => {
         updateScreen(currentNumber)
     })
 })
+
+let prevNumber = ''
+let calculationOperator = ''
+let currentNumber = '0'
 
 const inputNumber = (number) => {
     if (currentNumber === '0') {
@@ -29,7 +33,7 @@ operators.forEach((operator) => {
     })
 })
 
-const inputOperator = (opertaor) => {
+const inputOperator = (operator) => {
     if (calculationOperator === '') {
         prevNumber = currentNumber
     }
@@ -51,13 +55,13 @@ const calculate = () => {
             result = parseFloat(prevNumber) + parseFloat(currentNumber)
             break
         case "-":
-            result = parseFloat (prevNumber) - parseFloat (currentNumber)
+            result = prevNumber - currentNumber
             break
         case "*":
-            result = parseFloat (prevNumber) * parseFloat (currentNumber)
+            result = prevNumber * currentNumber
             break
         case "/":
-            result = parseFloat (prevNumber) / parseFloat (currentNumber)
+            result = prevNumber / currentNumber
             break
         default:
             return
@@ -82,10 +86,12 @@ const clearAll = () => {
 const decimal = document.querySelector('decimal')
 
 decimal.addEventListener('click', (event) => {
-    inputDecimal = (dot) => {
-        if(currentNumber.includes(',')) {
-            return
-        }
-        currentNumber += dot
-    }
+    inputDecimal(event.target.value)
+    updateScreen(currentNumber)
 })
+
+inputDecimal = (dot) => {
+    if(currentNumber.includes(',')) {
+        return}
+    currentNumber += dot
+}
