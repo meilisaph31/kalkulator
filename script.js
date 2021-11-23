@@ -9,18 +9,18 @@ let prevNumber = ''
 let calculationOperator = ''
 let currentNumber = '0'
 
-const updateScreen = (number) => {
+const updateScreen = (number)=>{
     calculatorScreen.value = number
 }
-const inputNumber = (number) => {
-    if(currentNumber==='0') {
+const inputNumber = (number)=>{
+    if(currentNumber==='0'){
         currentNumber = number
-    } else {
+    } else{
         currentNumber += number
     }
 }
-const inputOperator = (operator) => {
-    if(calculationOperator==='') {
+const inputOperator = (operator)=>{
+    if(calculationOperator===''){
         prevNumber = currentNumber
     }
     calculationOperator = operator
@@ -28,48 +28,48 @@ const inputOperator = (operator) => {
 
 }
 
-const clearAll = () => {
+const clearAll=()=>{
     prevNumber = ''
     calculationOperator = ''
     currentNumber = '0'
 }
-inputDecimal = (dot) => {
-    if(currentNumber.includes('.')) {
+inputDecimal = (dot)=>{
+    if(currentNumber.includes('.')){
         return
     }
     currentNumber += dot
 }
 
-numbers.forEach((number) => {
-    number.addEventListener("click",(event) => {
+numbers.forEach((number)=>{
+    number.addEventListener("click",(event)=>{
         inputNumber(event.target.value)
         updateScreen(currentNumber)
     })
 })
 
-operators.forEach((operator => {
-    operator.addEventListener("click",(event) => {
+operators.forEach((operator)=>{
+    operator.addEventListener("click",(event)=>{
         inputOperator(event.target.value)
     })
 })
 
-equalSign.addEventListener('click',() => {
+equalSign.addEventListener('click',()=>{
     calculate()
     updateScreen(currentNumber)
 })
 
-clearBtn.addEventListener('click',() => {
+clearBtn.addEventListener('click',()=>{
     clearAll()
     updateScreen(currentNumber)
 })
-decimal.addEventListener('click',(event) => {
+decimal.addEventListener('click',(event)=>{
     inputDecimal(event.target.value)
     updateScreen(currentNumber)
 })
 
-const calculate = () => {
+const calculate = () =>{
     let result = ''
-    switch(calculationOperator) {
+    switch(calculationOperator){
         case "+":
             result = parseFloat(prevNumber) + parseFloat(currentNumber)
             break
