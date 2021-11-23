@@ -48,27 +48,6 @@ equalSign.addEventListener('click', () => {
     updateScreen(currentNumber)
 })
 
-const calculate = () => {
-    let result = ''
-    switch(calculationOperator) {
-        case "+":
-            result = parseFloat(prevNumber) + parseFloat(currentNumber)
-            break
-        case "-":
-            result = prevNumber - currentNumber
-            break
-        case "*":
-            result = prevNumber * currentNumber
-            break
-        case "/":
-            result = prevNumber / currentNumber
-            break
-        default:
-            return
-    }
-    currentNumber = result
-    calculationOperator = ''
-}
 
 const clearBtn = document.querySelector('.all-clear')
 
@@ -94,4 +73,35 @@ inputDecimal = (dot) => {
     if(currentNumber.includes(',')) {
         return}
     currentNumber += dot
+}
+
+const calculate = () => {
+    let result = ''
+    switch(calculationOperator) {
+        case "+":
+            result = parseFloat(prevNumber) + parseFloat(currentNumber)
+            break
+        case "-":
+            result = parseFloat(prevNumber) - parseFloat(currentNumber)
+            break
+        case "*":
+            result = parseFloat(prevNumber) * parseFloat(currentNumber)
+            break
+        case "/":
+            result = parseFloat(prevNumber) / parseFloat(currentNumber)
+            break
+        case "%":
+            result = parseFloat(prevNumber) / parseFloat(100)
+            break
+        case "^":
+            result = Math.pow(prevNumber,currentNumber)
+            break
+        case "sqrt":
+            result = Math.sqrt(prevNumber)
+            break
+        default:
+            return
+    }
+    currentNumber = result
+    calculationOperator = ''
 }
